@@ -5,5 +5,4 @@ NF06 Project
 - [] Profil Client
 - [] Profil Admin
 - [] File d’attente
-
 - [] Finalisation de l'interface en ligne de commande.
