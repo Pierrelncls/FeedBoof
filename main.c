@@ -1,5 +1,5 @@
 #include <stdio.h>
 
 int main() {
-    printf("Bidule");
+    printf("Bidule lorem ipsum dolor sit amet");
 }
