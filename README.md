@@ -1,7 +1,8 @@
 # FeedBoof
 NF06 Project
 
-- [ ] Créer les fichiers restau avec les menus
+- [x] Créer les fichiers restau avec les menus
+- [x] Structures
 - [ ] Profil Client
 - [ ] Profil Admin
 - [ ] File d’attente
