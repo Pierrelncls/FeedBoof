@@ -1,40 +1,82 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct MenuItem
-{
-    char type[10];
+//STRUCTURES
+
+typedef struct MenuItem {
+    char type[15];
     char nom[100];
     float prix;
     int stock;
-};
+} MenuItem;
 
-struct Restaurant
-{
+typedef struct Restaurant {
     char nom[100];
     int count;
-    struct MenuItem items[15];
+    MenuItem items[15];
+} Restaurant;
 
-
-};
-
-struct Noeuds
-{
-    char nom[100];
+typedef struct Commande {
+    char nomResto[100];
     int ncommande;
-    int total;
-    struct MenuItem *next;
-};
+    float total;
+    struct Commande *next;
+} Commande;
 
+
+//MAIN
 
 int main() {
-    printf("Bidule lorem ipsum dolor sit amet\n");
 
 
+    //Lecture du fichier csv
+    Restaurant restaurants[4];
+    int nb_restos = 0;
 
+    FILE *file = fopen("restaurants.csv", "r");
+    if (file == NULL) {
+        printf("Echec de l'ouverture du fichier.\n");
+        exit(1);
+    }
 
+    char ligne[200];
 
+    //Lecture ligne par ligne
+    while (fgets(ligne, 200, file) != NULL) {
+        
+        ligne[strcspn(ligne, "\n")] = 0;
 
+        //Si pas virgule, c'est un resto
+        if (strchr(ligne, ',') == NULL) {
+            strcpy(restaurants[nb_restos].nom, ligne);
+            restaurants[nb_restos].count = 0; //Initialisation du compteur de plats
+            nb_restos++; 
+        } 
+        else {
+            //Si virgule, c'est un plat
+            int index_resto = nb_restos - 1; //Le resto actuel est le dernier
+            int index_plat = restaurants[index_resto].count;
 
-    
-    return 0;
+            //Coupe la ligne aux virgules
+            char *morceau = strtok(ligne, ","); 
+            strcpy(restaurants[index_resto].items[index_plat].type, morceau);
+
+            morceau = strtok(NULL, ",");
+            if(morceau[0] == ' ') morceau++; 
+            strcpy(restaurants[index_resto].items[index_plat].nom, morceau);
+
+            morceau = strtok(NULL, ",");
+            //convertion de chaine en float
+            restaurants[index_resto].items[index_plat].prix = atof(morceau); 
+
+            morceau = strtok(NULL, ",");
+            //convertion de chaine en int
+            restaurants[index_resto].items[index_plat].stock = atoi(morceau);
+
+            restaurants[index_resto].count++;
+        }
+    }
+
+    fclose(file);
 }
