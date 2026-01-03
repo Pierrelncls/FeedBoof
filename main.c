@@ -24,13 +24,21 @@ typedef struct Commande {
     struct Commande *next;
 } Commande;
 
+void menuClient(Restaurant restaurants[], int nb_restos) {
+
+}
+
+void menuAdmin() {
+
+}
+
+
 
 //MAIN
-
 int main() {
 
 
-    //Lecture du fichier csv
+    //LECTURE CSV
     Restaurant restaurants[4];
     int nb_restos = 0;
 
@@ -79,4 +87,41 @@ int main() {
     }
 
     fclose(file);
+
+    //INTERFACE
+    int choixMenu = -1;
+    char mdp[20];
+
+    while (choixMenu != 0) {
+        printf("\n=== GESTION RESTAURANT ===\n");
+        printf("1 - Mode CLIENT (Commander)\n");
+        printf("2 - Mode ADMIN (Gerer)\n");
+        printf("0 - QUITTER\n");
+        printf("Votre choix : ");
+        scanf("%d", &choixMenu);
+
+        if (choixMenu == 1) {
+            menuClient(restaurants, nb_restos);
+        }
+        else if (choixMenu == 2) {
+            printf("\nMot de passe :");
+            scanf("%s", &mdp);
+            if (strcmp(mdp, "admin") == 0) {
+            menuAdmin();
+            }
+            else {
+                printf("Mauvais mot de passe, retour au menu principal");
+            }
+        }
+        else if (choixMenu == 0) {
+            printf("Au revoir !\n");
+        }
+        else {
+            printf("Choix invalide.\n");
+        }
+    }
+
+    return 0;
 }
+
+
