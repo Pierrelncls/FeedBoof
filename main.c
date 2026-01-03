@@ -29,9 +29,35 @@ void menuClient(Restaurant restaurants[], int nb_restos) {
 }
 
 void menuAdmin() {
+    
+    int choix = -1;
 
+    while (choix != 0) {
+        printf("\n--- PANEL ADMINISTRATEUR ---\n");
+        printf("1 - Servir la prochaine commande\n");
+        printf("2 - Voir le nombre total de commande servies\n");
+        printf("3 - Voir le montant total des ventes\n");
+        printf("0 - Retour menu principal\n");
+        printf("Choix : ");
+        scanf("%d", &choix);
+
+        if (choix == 1) {
+            //mettre la fonction qui sert la commande
+            printf("Service)\n");
+        }
+        //Mettre les fonctions pour voir le nombre de commande
+        else if (choix == 2) {
+            printf("Affichage des commandes\n");
+        }
+        //Mettre les fonctions pour voir le nombre de vente
+        else if (choix == 3) {
+            printf("Affichage du montant total des ventes\n");
+        }
+        else if (choix != 0) {
+            printf("Mauvaise saisie\n");
+        }
+    }
 }
-
 
 
 //MAIN
@@ -94,8 +120,8 @@ int main() {
 
     while (choixMenu != 0) {
         printf("\n=== GESTION RESTAURANT ===\n");
-        printf("1 - Mode CLIENT (Commander)\n");
-        printf("2 - Mode ADMIN (Gerer)\n");
+        printf("1 - Mode CLIENT\n");
+        printf("2 - Mode ADMIN\n");
         printf("0 - QUITTER\n");
         printf("Votre choix : ");
         scanf("%d", &choixMenu);
