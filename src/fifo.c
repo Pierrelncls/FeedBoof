@@ -26,7 +26,7 @@ int isEmpty(Queue *q) {
     return q->debut == NULL;
 }
 
-int enqueue(Queue *q,  int valeur_numero_restau, int valeur_numero_commande, float total_commande) {
+void enqueue(Queue *q,  int valeur_numero_restau, int valeur_numero_commande, float valeur_total_commande) {
     Noeud *nv_noeud = malloc(sizeof(Noeud));
     if (nv_noeud == NULL) {
         printf("erreur Bidule\n");
@@ -47,7 +47,7 @@ int enqueue(Queue *q,  int valeur_numero_restau, int valeur_numero_commande, flo
 
 }
 
-Node dequeue(Queue *q) {
+Noeud dequeue(Queue *q) {
     if (isEmpty(q)) {
         printf("Bidule vide\n");
         Noeud empty = {0};
@@ -69,10 +69,10 @@ Node dequeue(Queue *q) {
 }
 
 void displayQueue(Queue *q) {
-    Noeud *courant = q->front;
+    Noeud *courant = q->debut;
     while (courant != NULL) {
         printf("%d -> ", courant->numero_restau);
-        printf("%d -> ", courant->numero_commande;);
+        printf("%d -> ", courant->numero_commande);
         printf("%d -> ", courant->total_commande);
         courant = courant->suivant;
     }
