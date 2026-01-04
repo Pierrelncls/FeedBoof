@@ -19,7 +19,7 @@ typedef struct Restaurant {
 
 
 //FONCTIONS PROFILS
-void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
+void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes) {
     int choixResto = -1;
     
     //Choix du resto
@@ -47,6 +47,7 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
         printf("\n--- MENU : %s ---\n", restaurants[indexR].nom);
         
         // Affichage des plats
+        printf("DEBUG : indexR=%d, count=%d\n", indexR, restaurants[indexR].count);
         for (int i = 0; i < restaurants[indexR].count; i++) {
             printf("%d. %s (%.2f €) - Stock: %d\n", 
                    i + 1, 
@@ -90,7 +91,7 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
 
 
 
-void menuAdmin(Queue Commandes, int commandes_servies, Restaurant restaurants[]) {
+void menuAdmin(Queue *Commandes, int *commandes_servies, Restaurant restaurants[]) {
     
     int choix = -1;
 
@@ -105,7 +106,7 @@ void menuAdmin(Queue Commandes, int commandes_servies, Restaurant restaurants[])
 
         switch (choix) {
             case 1:
-                dequeue(&Commandes);
+                dequeue(Commandes);
                 commandes_servies+=1;
 
                 printf("Service)\n");
@@ -117,7 +118,7 @@ void menuAdmin(Queue Commandes, int commandes_servies, Restaurant restaurants[])
                 printf("Affichage du montant total des ventes\n");
                 break;
             default:
-                printf("Mauvaise saisie\n");;
+                printf("Mauvaise saisie\n");
         }
     }
 }

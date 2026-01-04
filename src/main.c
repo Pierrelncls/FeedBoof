@@ -4,6 +4,7 @@
 #include "fifo.h"
 #include "fonctions.h"
 
+
 //MAIN
 int main() {
 
@@ -13,6 +14,7 @@ int main() {
     // Définir la liste des commandes
     Queue Commandes; 
     initqueue(&Commandes);
+    int commandes_servies = 0;
 
     int nb_restos = 0;
 
@@ -78,17 +80,20 @@ int main() {
         switch (choixMenu) {
             case 0: //Quitter
                 printf("Au revoir !\n");
+                break;
             case 1: //compte client
-                menuClient(restaurants, nb_restos);
+                menuClient(restaurants, nb_restos, &Commandes);
+                break;
             case 2: //compte admin
                 printf("\nMot de passe :");
                 scanf("%s", &mdp);
                 if (strcmp(mdp, "admin") == 0) {
-                menuAdmin(Queue commandes, int commandes_servies, Restaurant restaurants[]);
+                menuAdmin(&Commandes, &commandes_servies, restaurants);
                 }
                 else {
                     printf("Mauvais mot de passe, retour au menu principal");
                 }
+                break;
             default: //saisie inconnue
                 printf("Choix invalide.\n");
         }

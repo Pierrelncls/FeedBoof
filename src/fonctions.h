@@ -21,8 +21,8 @@ typedef struct Commande {
     struct Commande *next;
 } Commande;
 
-void menuClient(Restaurant restaurants[], int nb_restos);
+void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes);
 
-void menuAdmin(Queue Commandes, int commandes_servies, Restaurant restaurants[]);
+void menuAdmin(Queue *Commandes, int *commandes_servies, Restaurant restaurants[]);
 
 #endif
