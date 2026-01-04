@@ -17,7 +17,7 @@ void initqueue(Queue *q);
 
 int isEmpty(Queue *q);
 
-void enqueue(Queue *q, int numero_restau, int numero_commande, int total_commande);
+void enqueue(Queue *q, int numero_restau, int total_commande);
 
 int dequeue(Queue *q);
 

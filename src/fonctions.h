@@ -23,6 +23,6 @@ typedef struct Commande {
 
 void menuClient(Restaurant restaurants[], int nb_restos);
 
-void menuAdmin(void);
+void menuAdmin(Queue Commandes, int commandes_servies, Restaurant restaurants[]);
 
 #endif
