@@ -103,20 +103,19 @@ void menuAdmin() {
         printf("Choix : ");
         scanf("%d", &choix);
 
-        if (choix == 1) {
-            //mettre la fonction qui sert la commande
-            printf("Service)\n");
-        }
-        //Mettre les fonctions pour voir le nombre de commande
-        else if (choix == 2) {
-            printf("Affichage des commandes\n");
-        }
-        //Mettre les fonctions pour voir le nombre de vente
-        else if (choix == 3) {
-            printf("Affichage du montant total des ventes\n");
-        }
-        else if (choix != 0) {
-            printf("Mauvaise saisie\n");
+        switch (choix) {
+            case 1:
+                //mettre la fonction qui sert la commande
+                printf("Service)\n");
+                break;
+            case 2:
+                printf("Affichage des commandes\n");
+                break;
+            case 3:
+                printf("Affichage du montant total des ventes\n");
+                break;
+            default:
+                printf("Mauvaise saisie\n");;
         }
     }
 }
