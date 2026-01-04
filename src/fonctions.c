@@ -67,6 +67,8 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
                 printf("=> Plus de stocks\n");
             } 
             else {
+                //Ajouter la commande à la liste totale
+
                 totalCommande = totalCommande + restaurants[indexR].items[indexP].prix;
                 
                 //baisse le stock sauf -1
@@ -76,6 +78,7 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
                 printf("=> %s ajoute - Total provisoire : %.2f €\n", restaurants[indexR].items[indexP].nom, totalCommande);
             }
         }
+        enqueue(Commandes, indexR,totalCommande );
     }
 
     // Validation finale
@@ -87,7 +90,7 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
 
 
 
-void menuAdmin(Queue commandes, int commandes_servies, Restaurant restaurants[]) {
+void menuAdmin(Queue Commandes, int commandes_servies, Restaurant restaurants[]) {
     
     int choix = -1;
 
@@ -102,7 +105,7 @@ void menuAdmin(Queue commandes, int commandes_servies, Restaurant restaurants[])
 
         switch (choix) {
             case 1:
-                Noeud servie = dequeue(commandes);
+                dequeue(&Commandes);
                 commandes_servies+=1;
 
                 printf("Service)\n");

@@ -4,7 +4,7 @@
 //Structure d'un noeud
 typedef struct Commande {
     int numero_restau;
-    int numero_commande;
+    int numero_commande; //ou id
     int total_commande;
     struct Commande *suivant;
 } Commande;
@@ -13,12 +13,14 @@ typedef struct Commande {
 typedef struct {
     Commande *debut;
     Commande *fin;
+    unsigned int id_suivant; //id (numéro de commande) à attribuer à la prochaine commande
 } Queue;
 
 //Initialiser une file d'attente (vide)
 void initqueue(Queue *q) {
     q->debut = NULL;
     q->fin = NULL;
+    q->id_suivant = 1;
 }
 
 
@@ -26,14 +28,14 @@ int isEmpty(Queue *q) {
     return q->debut == NULL;
 }
 
-void enqueue(Queue *q,  int valeur_numero_restau, int valeur_numero_commande, float valeur_total_commande) {
+void enqueue(Queue *q,  int valeur_numero_restau, float valeur_total_commande) {
     Commande *nv_noeud = malloc(sizeof(Commande));
     if (nv_noeud == NULL) {
         printf("erreur Bidule\n");
         return;
     }
     nv_noeud->numero_restau = valeur_numero_restau;
-    nv_noeud->numero_commande = valeur_numero_commande;
+    nv_noeud->numero_commande = q->id_suivant++;
     nv_noeud->total_commande = valeur_total_commande;
     nv_noeud->suivant =NULL;
 
