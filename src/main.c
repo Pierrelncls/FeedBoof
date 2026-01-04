@@ -9,6 +9,11 @@ int main() {
 
     //LECTURE CSV
     Restaurant restaurants[4];
+
+    // Définir la liste des commandes
+    Queue Commandes; 
+    initqueue(&Commandes);
+
     int nb_restos = 0;
 
     FILE *file = fopen("restaurants.csv", "r");
@@ -69,24 +74,23 @@ int main() {
         printf("Votre choix : ");
         scanf("%d", &choixMenu);
 
-        if (choixMenu == 1) {
-            menuClient(restaurants, nb_restos);
-        }
-        else if (choixMenu == 2) {
-            printf("\nMot de passe :");
-            scanf("%s", &mdp);
-            if (strcmp(mdp, "admin") == 0) {
-            menuAdmin();
-            }
-            else {
-                printf("Mauvais mot de passe, retour au menu principal");
-            }
-        }
-        else if (choixMenu == 0) {
-            printf("Au revoir !\n");
-        }
-        else {
-            printf("Choix invalide.\n");
+
+        switch (choixMenu) {
+            case 0: //Quitter
+                printf("Au revoir !\n");
+            case 1: //compte client
+                menuClient(restaurants, nb_restos);
+            case 2: //compte admin
+                printf("\nMot de passe :");
+                scanf("%s", &mdp);
+                if (strcmp(mdp, "admin") == 0) {
+                menuAdmin(Queue commandes, int commandes_servies, Restaurant restaurants[]);
+                }
+                else {
+                    printf("Mauvais mot de passe, retour au menu principal");
+                }
+            default: //saisie inconnue
+                printf("Choix invalide.\n");
         }
     }
 

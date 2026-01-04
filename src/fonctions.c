@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "fifo.h"
 
 typedef struct MenuItem {
     char type[15];
@@ -12,18 +13,13 @@ typedef struct MenuItem {
 typedef struct Restaurant {
     char nom[100];
     int count;
+    int recettes; //somme d'argent gagnées par les ventes
     MenuItem items[15];
 } Restaurant;
 
-typedef struct Commande {
-    char nomResto[100];
-    int ncommande;
-    float total;
-    struct Commande *next;
-} Commande;
 
 //FONCTIONS PROFILS
-void menuClient(Restaurant restaurants[], int nb_restos) {
+void menuClient(Restaurant restaurants[], int nb_restos, Queue Commandes) {
     int choixResto = -1;
     
     //Choix du resto
@@ -89,7 +85,9 @@ void menuClient(Restaurant restaurants[], int nb_restos) {
     }
 }
 
-void menuAdmin() {
+
+
+void menuAdmin(Queue commandes, int commandes_servies, Restaurant restaurants[]) {
     
     int choix = -1;
 
@@ -104,7 +102,9 @@ void menuAdmin() {
 
         switch (choix) {
             case 1:
-                //mettre la fonction qui sert la commande
+                Noeud servie = dequeue(commandes);
+                commandes_servies+=1;
+
                 printf("Service)\n");
                 break;
             case 2:

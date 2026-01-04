@@ -2,17 +2,17 @@
 #include <stdlib.h>
 
 //Structure d'un noeud
-typedef struct Noeud {
+typedef struct Commande {
     int numero_restau;
     int numero_commande;
     int total_commande;
-    struct Noeud *suivant;
-} Noeud;
+    struct Commande *suivant;
+} Commande;
 
 //Structuure de la file d'attente
 typedef struct {
-    Noeud *debut;
-    Noeud *fin;
+    Commande *debut;
+    Commande *fin;
 } Queue;
 
 //Initialiser une file d'attente (vide)
@@ -27,7 +27,7 @@ int isEmpty(Queue *q) {
 }
 
 void enqueue(Queue *q,  int valeur_numero_restau, int valeur_numero_commande, float valeur_total_commande) {
-    Noeud *nv_noeud = malloc(sizeof(Noeud));
+    Commande *nv_noeud = malloc(sizeof(Commande));
     if (nv_noeud == NULL) {
         printf("erreur Bidule\n");
         return;
@@ -47,15 +47,15 @@ void enqueue(Queue *q,  int valeur_numero_restau, int valeur_numero_commande, fl
 
 }
 
-Noeud dequeue(Queue *q) {
+Commande dequeue(Queue *q) {
     if (isEmpty(q)) {
         printf("Bidule vide\n");
-        Noeud empty = {0};
+        Commande empty = {0};
         return empty;
     }
 
-    Noeud *temp = q->debut;
-    Noeud data = *temp;
+    Commande *temp = q->debut;
+    Commande data = *temp;
     data.suivant = NULL;
 
     q->debut=temp->suivant;
@@ -69,7 +69,7 @@ Noeud dequeue(Queue *q) {
 }
 
 void displayQueue(Queue *q) {
-    Noeud *courant = q->debut;
+    Commande *courant = q->debut;
     while (courant != NULL) {
         printf("%d -> ", courant->numero_restau);
         printf("%d -> ", courant->numero_commande);
