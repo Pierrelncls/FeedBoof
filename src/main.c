@@ -82,10 +82,10 @@ int main() {
                 printf("Au revoir !\n");
                 break;
             case 1: //compte client
-                menuClient(restaurants, nb_restos, &Commandes);
+                menuClient(restaurants, 4, &Commandes);
                 break;
             case 2: //compte admin
-                printf("\nMot de passe :");
+                printf("\nMot de passe : ");
                 scanf("%s", &mdp);
                 if (strcmp(mdp, "admin") == 0) {
                 menuAdmin(&Commandes, &commandes_servies, restaurants);

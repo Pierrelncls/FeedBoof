@@ -2,20 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "fifo.h"
-
-typedef struct MenuItem {
-    char type[15];
-    char nom[100];
-    float prix;
-    int stock;
-} MenuItem;
-
-typedef struct Restaurant {
-    char nom[100];
-    int count;
-    int recettes; //somme d'argent gagnées par les ventes
-    MenuItem items[15];
-} Restaurant;
+#include "fonctions.h"
 
 
 //FONCTIONS PROFILS
@@ -47,7 +34,6 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes) {
         printf("\n--- MENU : %s ---\n", restaurants[indexR].nom);
         
         // Affichage des plats
-        printf("DEBUG : indexR=%d, count=%d\n", indexR, restaurants[indexR].count);
         for (int i = 0; i < restaurants[indexR].count; i++) {
             printf("%d. %s (%.2f €) - Stock: %d\n", 
                    i + 1, 
@@ -106,9 +92,8 @@ void menuAdmin(Queue *Commandes, int *commandes_servies, Restaurant restaurants[
 
         switch (choix) {
             case 1:
-                dequeue(Commandes);
+                printf("\n Commande n°%d servie\n",dequeue(Commandes).numero_commande);
                 commandes_servies+=1;
-
                 printf("Service)\n");
                 break;
             case 2:

@@ -1,20 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "fifo.h" 
 
-//Structure d'un noeud
-typedef struct Commande {
-    int numero_restau;
-    int numero_commande; //ou id
-    int total_commande;
-    struct Commande *suivant;
-} Commande;
-
-//Structuure de la file d'attente
-typedef struct {
-    Commande *debut;
-    Commande *fin;
-    unsigned int id_suivant; //id (numéro de commande) à attribuer à la prochaine commande
-} Queue;
 
 //Initialiser une file d'attente (vide)
 void initqueue(Queue *q) {
@@ -29,7 +16,7 @@ int isEmpty(Queue *q) {
 }
 
 void enqueue(Queue *q,  int valeur_numero_restau, float valeur_total_commande) {
-    Commande *nv_noeud = malloc(sizeof(Commande));
+    Noeud *nv_noeud = malloc(sizeof(Noeud));
     if (nv_noeud == NULL) {
         printf("erreur Bidule\n");
         return;
@@ -49,15 +36,15 @@ void enqueue(Queue *q,  int valeur_numero_restau, float valeur_total_commande) {
 
 }
 
-Commande dequeue(Queue *q) {
+Noeud dequeue(Queue *q) {
     if (isEmpty(q)) {
-        printf("Bidule vide\n");
-        Commande empty = {0};
+        printf("Erreur: la file est vide\n");
+        Noeud empty = {0};
         return empty;
     }
 
-    Commande *temp = q->debut;
-    Commande data = *temp;
+    Noeud *temp = q->debut;
+    Noeud data = *temp;
     data.suivant = NULL;
 
     q->debut=temp->suivant;
@@ -71,7 +58,7 @@ Commande dequeue(Queue *q) {
 }
 
 void displayQueue(Queue *q) {
-    Commande *courant = q->debut;
+    Noeud *courant = q->debut;
     while (courant != NULL) {
         printf("%d -> ", courant->numero_restau);
         printf("%d -> ", courant->numero_commande);
