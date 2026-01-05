@@ -61,9 +61,10 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes) {
                 //baisse le stock sauf -1
                 if (restaurants[indexR].items[indexP].stock > 0) {
                     restaurants[indexR].items[indexP].stock = restaurants[indexR].items[indexP].stock - 1;
+                    restaurants[indexR].recettes += totalCommande; //ajouter le prix au compteur de recettes
                 }
                 printf("=> %s ajoute - Total provisoire : %.2f €\n", restaurants[indexR].items[indexP].nom, totalCommande);
-                restaurants[indexR].recettes += totalCommande;
+                
             }
         }
         enqueue(Commandes, indexR,totalCommande );
