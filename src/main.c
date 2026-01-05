@@ -88,7 +88,7 @@ int main() {
                 printf("\nMot de passe : ");
                 scanf("%s", &mdp);
                 if (strcmp(mdp, "admin") == 0) {
-                menuAdmin(&Commandes, &commandes_servies, restaurants);
+                menuAdmin(&Commandes, commandes_servies, restaurants, 4);
                 }
                 else {
                     printf("Mauvais mot de passe, retour au menu principal");

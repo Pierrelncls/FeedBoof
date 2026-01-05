@@ -62,7 +62,7 @@ void displayQueue(Queue *q) {
     while (courant != NULL) {
         printf("%d -> ", courant->numero_restau);
         printf("%d -> ", courant->numero_commande);
-        printf("%d -> ", courant->total_commande);
+        printf("%d -> \n", courant->total_commande);
         courant = courant->suivant;
     }
 }

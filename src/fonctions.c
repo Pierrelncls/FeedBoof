@@ -63,6 +63,7 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes) {
                     restaurants[indexR].items[indexP].stock = restaurants[indexR].items[indexP].stock - 1;
                 }
                 printf("=> %s ajoute - Total provisoire : %.2f €\n", restaurants[indexR].items[indexP].nom, totalCommande);
+                restaurants[indexR].recettes += totalCommande;
             }
         }
         enqueue(Commandes, indexR,totalCommande );
@@ -77,7 +78,7 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes) {
 
 
 
-void menuAdmin(Queue *Commandes, int *commandes_servies, Restaurant restaurants[]) {
+void menuAdmin(Queue *Commandes, int commandes_servies, Restaurant restaurants[], int nb_restos) {
     
     int choix = -1;
 
@@ -91,6 +92,8 @@ void menuAdmin(Queue *Commandes, int *commandes_servies, Restaurant restaurants[
         scanf("%d", &choix);
 
         switch (choix) {
+            case 0:
+                break;
             case 1:
                 printf("\n Commande n°%d servie\n",dequeue(Commandes).numero_commande);
                 commandes_servies+=1;
@@ -98,9 +101,13 @@ void menuAdmin(Queue *Commandes, int *commandes_servies, Restaurant restaurants[
                 break;
             case 2:
                 printf("Affichage des commandes\n");
+                printf("%d Commandes servies\n", commandes_servies);
                 break;
             case 3:
                 printf("Affichage du montant total des ventes\n");
+                for (int i = 0; i < nb_restos; i++) {
+                    printf("%d. %s: %f€\n", i + 1,restaurants[i].nom, restaurants[i].recettes);
+                }
                 break;
             default:
                 printf("Mauvaise saisie\n");
