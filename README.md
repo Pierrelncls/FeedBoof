@@ -1,7 +1,6 @@
-# FeedBoof
-NF06 Project
+# FeedBoof (Projet NF06 UTT A25)
 FeedBoof est un logiciel en ligne de commandes permettant de gérer des commandes de plusieurs articles dans plusieurs restaurants, pour plus d'informations consultez la [notice](notice.pdf).
-## Roadmap
+## Roadmap ([Consignes](consignes.pdf))
 - [x] Créer les fichiers restau avec les menus
 - [x] Structures
 - [x] Profil Client
