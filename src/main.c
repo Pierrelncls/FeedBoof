@@ -35,6 +35,7 @@ int main() {
         if (strchr(ligne, ',') == NULL) {
             strcpy(restaurants[nb_restos].nom, ligne);
             restaurants[nb_restos].count = 0; //Initialisation du compteur de plats
+            restaurants[nb_restos].recettes= 0.0;
             nb_restos++; 
         } 
         else {

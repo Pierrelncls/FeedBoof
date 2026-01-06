@@ -60,20 +60,19 @@ void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes) {
                 
                 //baisse le stock sauf -1
                 if (restaurants[indexR].items[indexP].stock > 0) {
-                    restaurants[indexR].items[indexP].stock = restaurants[indexR].items[indexP].stock - 1;
-                    restaurants[indexR].recettes += totalCommande; //ajouter le prix au compteur de recettes
+                    restaurants[indexR].items[indexP].stock = restaurants[indexR].items[indexP].stock - 1;            
                 }
-                printf("=> %s ajoute - Total provisoire : %.2f €\n", restaurants[indexR].items[indexP].nom, totalCommande);
-                
+                printf("=> %s ajoute - Total provisoire : %.2f €\n", restaurants[indexR].items[indexP].nom, totalCommande);                
             }
         }
-        enqueue(Commandes, indexR,totalCommande );
+    
     }
 
     // Validation finale
     if (totalCommande > 0) {
         printf("\nCommande validee pour le restaurant %s - Montant total : %.2f €\n", nomRestoChoisi, totalCommande);
-        //ajouter la fontion de l'ajout de commande
+        restaurants[indexR].recettes += totalCommande; //ajouter le prix au compteur de recettes
+        enqueue(Commandes, indexR, totalCommande );
     }
 }
 
@@ -98,7 +97,6 @@ void menuAdmin(Queue *Commandes, int commandes_servies, Restaurant restaurants[]
             case 1:
                 printf("\n Commande n°%d servie\n",dequeue(Commandes).numero_commande);
                 commandes_servies+=1;
-                printf("Service)\n");
                 break;
             case 2:
                 printf("Affichage des commandes\n");
@@ -107,7 +105,7 @@ void menuAdmin(Queue *Commandes, int commandes_servies, Restaurant restaurants[]
             case 3:
                 printf("Affichage du montant total des ventes\n");
                 for (int i = 0; i < nb_restos; i++) {
-                    printf("%d. %s: %f€\n", i + 1,restaurants[i].nom, restaurants[i].recettes);
+                    printf("%d. %s: %.2f€\n", i + 1,restaurants[i].nom, restaurants[i].recettes);
                 }
                 break;
             default:

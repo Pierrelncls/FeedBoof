@@ -15,13 +15,6 @@ typedef struct Restaurant {
     MenuItem items[15];
 } Restaurant;
 
-typedef struct Commande {
-    char nomResto[100];
-    int ncommande;
-    float total;
-    struct Commande *next;
-} Commande;
-
 void menuClient(Restaurant restaurants[], int nb_restos, Queue *Commandes);
 
 void menuAdmin(Queue *Commandes, int commandes_servies, Restaurant restaurants[], int nb_restos);

@@ -5,7 +5,7 @@
 typedef struct Noeud {
     int numero_restau;
     int numero_commande;
-    int total_commande;
+    float total_commande;
     struct Noeud *suivant;
 } Noeud;
 
